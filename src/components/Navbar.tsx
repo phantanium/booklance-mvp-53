@@ -44,6 +44,9 @@ export const Navbar = () => {
           </Link>
 
           <div className="flex items-center gap-4">
+            <Button variant="ghost" onClick={() => navigate("/services")}>
+              Browse Services
+            </Button>
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -62,7 +65,12 @@ export const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button onClick={() => navigate("/auth/login")}>Sign In</Button>
+              <>
+                <Button variant="outline" onClick={() => navigate("/auth/login")}>
+                  Sign In
+                </Button>
+                <Button onClick={() => navigate("/auth/login")}>Join Now</Button>
+              </>
             )}
           </div>
         </div>
