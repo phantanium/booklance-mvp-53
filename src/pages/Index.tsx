@@ -3,7 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { ServiceCard } from "@/components/ServiceCard";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
-import { Building2, Users, Search, Star } from "lucide-react";
+import { Building2, Users, Search, Star, Briefcase } from "lucide-react";
 import { dummyServices } from "@/lib/dummyData";
 
 const Index = () => {
