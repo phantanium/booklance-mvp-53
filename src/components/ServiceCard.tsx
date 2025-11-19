@@ -1,9 +1,10 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Star, Heart } from "lucide-react";
+import { Star, Heart, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { formatRupiah } from "@/lib/utils";
 
 interface ServiceCardProps {
   id: string;
@@ -17,6 +18,7 @@ interface ServiceCardProps {
   priceFrom: number;
   imageUrl: string;
   tags?: string[];
+  isVerified?: boolean;
 }
 
 export const ServiceCard = ({
@@ -31,6 +33,7 @@ export const ServiceCard = ({
   priceFrom,
   imageUrl,
   tags = [],
+  isVerified = false,
 }: ServiceCardProps) => {
   const [isFavorited, setIsFavorited] = useState(false);
 
@@ -66,7 +69,12 @@ export const ServiceCard = ({
               <AvatarImage src={freelancerAvatar} />
               <AvatarFallback>{freelancerName[0]}</AvatarFallback>
             </Avatar>
-            <span className="text-sm font-medium">{freelancerName}</span>
+            <div className="flex items-center gap-1">
+              <span className="text-sm font-medium">{freelancerName}</span>
+              {isVerified && (
+                <CheckCircle2 className="h-4 w-4 text-cyan-500 fill-cyan-500" />
+              )}
+            </div>
             <Badge variant="secondary" className="text-xs ml-auto">
               {freelancerLevel}
             </Badge>
@@ -98,8 +106,8 @@ export const ServiceCard = ({
           <span className="text-sm text-muted-foreground">({reviewCount})</span>
         </div>
         <div className="text-right">
-          <span className="text-xs text-muted-foreground">From</span>
-          <p className="font-bold text-lg">${priceFrom}</p>
+          <span className="text-xs text-muted-foreground">Mulai dari</span>
+          <p className="font-bold text-lg">{formatRupiah(priceFrom)}</p>
         </div>
       </CardFooter>
     </Card>
